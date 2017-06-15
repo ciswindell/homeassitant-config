@@ -1,0 +1,13 @@
+###   A script that waits for a long period of time 
+###   and then turns off the closet Lights
+
+sequence:
+- service: script.turn_off
+  entity_id: script.timer_closet_short_set
+- delay:
+    minutes: 20
+- service: light.turn_off
+  data:
+    entity_id: light.closet_light_3
+- delay:
+    minutes: 2

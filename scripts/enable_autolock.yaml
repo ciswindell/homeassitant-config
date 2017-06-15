@@ -1,0 +1,10 @@
+### Restore Autolock Feature
+
+sequence:
+- delay:
+    minutes: 30
+- service: input_boolean.turn_on
+  data:
+    entity_id: input_boolean.autolock
+- service: script.autolock
+

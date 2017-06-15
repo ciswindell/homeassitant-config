@@ -1,0 +1,22 @@
+###   Turn off bath fan and light when humidity is low
+
+alias: Bathroom Humidity Low
+trigger:
+  platform: numeric_state
+  entity_id: sensor.humidity__bathroom_79
+  below: 48
+condition:
+  condition: or
+  conditions:
+    - condition: state
+      entity_id: switch.bathroom_fan_9
+      state: 'on'
+    - condition: state
+      entity_id: light.bathroom_light_4
+      state: 'on'
+action:
+- service: switch.turn_off
+  entity_id: switch.bathroom_fan_9
+- service: script.turn_on
+  data:
+    entity_id: script.timer_bathroom_set

@@ -1,0 +1,30 @@
+###  Turns Sleep Mode On when all of the lights are turned off and 
+###  the house is occupied
+
+alias: Sleep Mode On
+trigger:
+- platform: state
+  entity_id: group.interior_lights
+  to: 'off'
+  for: '00:02:00'
+condition:
+- condition: state
+  entity_id: input_boolean.sleep_mode
+  state: 'off'
+- condition: state
+  entity_id: group.household_occupancy
+  state: 'home'
+- condition: or
+  conditions:
+  - condition: time
+    after: '21:00:00'
+  - condition: time
+    before: '06:00:00'
+action:
+- service: input_boolean.turn_on
+  entity_id: input_boolean.sleep_mode 
+- service: cover.close_cover
+  entity_id: cover.patio_door_shade_92
+- service: joaoapps_join.phoebe_join_send_tasker
+  data:
+    command: "setvar=:=SLEEPING=:=yes"

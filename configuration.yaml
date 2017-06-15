@@ -1,0 +1,122 @@
+#### Configuration ###############################
+
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 1625
+  unit_system: imperial
+  time_zone: America/Denver
+
+### Packages #################################################  
+  packages: !include_dir_named packages
+
+
+frontend:
+config:
+updater:
+discovery:
+sun:
+
+### Security ###################################################
+http:
+  api_password: !secret http_password
+  trusted_networks:
+    - 192.168.0.1
+  ip_ban_enabled: True
+  login_attempts_threshold: 5  
+
+### Events/Logs/History ###############################  
+logbook:
+recorder:
+  purge_days: 5
+
+history:
+  exclude:
+    domains:
+      - automation
+      - homeassistant
+      - joaoapps_join
+      - mqtt
+      - notify
+      - persistent_notification
+      - scene
+      - script
+      - tts
+
+tts:
+  platform: google
+  
+#### Notifications ####################################
+# Join Tasker App
+joaoapps_join:
+  - name: Phoebe Join
+    device_id: bf3b5ffd0d4f458597c103f61f4576a7
+    api_key: !secret join_api_key
+
+# Join Notify
+notify:
+  - platform: joaoapps_join
+    device_id: bf3b5ffd0d4f458597c103f61f4576a7
+    name: Phoebe
+    api_key: !secret join_api_key
+
+#### Remotes #################################################
+
+remote:
+  - platform: harmony
+    name: Living Room
+    host: 192.168.0.123
+    
+#### Vera/Hue/Alexa ############################################
+
+#Vera
+vera:
+  vera_controller_url: http://192.168.0.107:3480/
+ # Optional to exclude devices - this is a list of vera device ids
+  exclude: [ 68, 73, 96]
+  # Optional to import switches as lights - this is a list of vera device ids
+  lights: [14]
+  
+#Hue Bridge
+emulated_hue:
+  type: alexa
+  host_ip: 192.168.0.120
+  expose_by_default: true
+  exposed_domains:
+    - light
+    - switch
+    - cover
+
+### Device Trackers ########################################
+
+device_tracker:
+ - platform: bluetooth_tracker
+   track_new_devices: false
+
+   
+   
+### Custom Components #######################################
+
+# Battery Levels
+battery_state:
+   
+#### Includes  ##############################################
+automation: !include_dir_list automations
+      
+scene: !include_dir_merge_list scenes
+  
+group: !include groups.yaml
+
+sensor: !include sensors.yaml
+
+script: !include_dir_named scripts
+
+input_select: !include input_select.yaml     
+
+input_boolean: !include input_boolean.yaml 
+
+switch: !include switch.yaml
+
+
+    

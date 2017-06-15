@@ -1,0 +1,18 @@
+###   When no motion is detected, run the script
+###   No Motion Bathroom Timer.  When the timer expires
+###   the Bathroom Lights turn Off
+
+alias: No Motion in Bathroom
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion__bathroom_76
+  from: 'on'
+condition:
+- condition: numeric_state
+  entity_id: sensor.humidity__bathroom_79
+  below: 40
+- condition: state
+  entity_id: binary_sensor.motion__bathroom_76
+  state: 'off'
+action:
+- service: script.timer_bathroom_set

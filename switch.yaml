@@ -1,0 +1,67 @@
+#### switch.yaml
+
+#### Template Switches #################################################
+
+#### Shades ##########
+
+- platform: template
+  switches:
+    bedroom_shade:
+      friendly_name: 'Bedroom Shade'
+      value_template: "{{ is_state('cover.bedroom_shade_94', 'open') }}"
+      turn_on:
+        service: cover.close_cover
+        entity_id: cover.bedroom_shade_94
+      turn_off:
+        service: cover.open_cover
+        entity_id: cover.bedroom_shade_94
+        
+
+    office_shade:
+      friendly_name: 'Office Shade'
+      value_template: "{{ is_state('cover.entry_shade_93', 'open') }}"
+      turn_on:
+        service: cover.close_cover
+        entity_id: cover.entry_shade_93
+      turn_off:
+        service: cover.open_cover
+        entity_id: cover.entry_shade_93
+        
+
+    living_shade:
+      friendly_name: 'Living Room Shade'
+      value_template: "{{ is_state('cover.living_room_shades_95', 'open') }}"
+      turn_on:
+        service: cover.close_cover
+        entity_id: cover.living_room_shades_95
+      turn_off:
+        service: cover.open_cover
+        entity_id: cover.living_room_shades_95
+        
+
+    patio_shade:
+      friendly_name: 'Patio Door Shade'
+      value_template: "{{ is_state('cover.patio_door_shade_92', 'open') }}"
+      turn_on:
+        service: cover.close_cover
+        entity_id: cover.patio_door_shade_92
+      turn_off:
+        service: cover.open_cover
+        entity_id: cover.patio_door_shade_92
+        
+
+    upper_shade:
+      friendly_name: 'Upper Shade'
+      value_template: "{{ is_state('cover.upper_shade_97', 'open') }}"
+      turn_on:
+        service: cover.close_cover
+        entity_id: cover.upper_shade_97
+      turn_off:
+        service: cover.open_cover
+        entity_id: cover.upper_shade_97
+        
+        
+        
+        
+
+    

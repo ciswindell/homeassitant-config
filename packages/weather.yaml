@@ -1,0 +1,16 @@
+camera:
+  - platform: generic
+    still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=FTG&brand=wui&num=1&delay=15&type=N0R&frame=0&scale=1.000&noclutter=1&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=1&lightning=Hide&smooth=1&rand=24956202&lat=0&lon=0&label=you
+    name: Denver Radar
+
+  - platform: generic
+    still_image_url: https://www.colorado.gov/airquality/live_image/chpark.jpg
+    name: City Park    
+
+  - platform: generic
+    still_image_url: https://icons.wunderground.com/webcamramdisk/k/t/KT0JA/1/current.jpg?1497381468
+    name: Sloans Lake 
+    
+  - platform: generic
+    still_image_url: https://icons.wunderground.com/webcamramdisk/l/e/LenaGulch/3/current.jpg?1497381366
+    name: Wheatridge

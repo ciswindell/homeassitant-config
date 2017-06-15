@@ -1,0 +1,17 @@
+###  Set the state of the house at sunrise
+
+alias: Sunrise
+trigger:
+- platform: sun
+  event: sunrise
+action:
+- service: cover.open_cover
+  entity_id: cover.entry_shade_93
+- service: cover.open_cover
+  entity_id: cover.living_room_shades_95
+- service: cover.open_cover
+  entity_id: cover.patio_door_shade_92
+- service: cover.open_cover
+  entity_id: cover.upper_shade_97
+- service: light.turn_off
+  entity_id: light.front_porch_light_24

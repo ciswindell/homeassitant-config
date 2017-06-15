@@ -1,0 +1,113 @@
+
+#########################
+###      Sensors      ###
+#########################
+
+##################################
+###      Template Sensors      ###
+##################################
+
+- platform: template
+  sensors:
+
+#### Harmony Hub  
+    harmony_activity:
+      friendly_name: 'Harmony Activity'
+      value_template: '{{ states.remote.living_room.attributes.current_activity }}'
+      
+### Environment Sensors ###
+    living_room_temp:
+      friendly_name: 'Living Room Temp'
+      value_template: '{{ states.climate.thermostat_36.attributes.current_temperature }}'
+      unit_of_measurement: '°F'
+     
+    darkness:
+      friendly_name: 'Darkness'
+      value_template: >
+        {% if (states.sun.sun.attributes.elevation | int < 25) and (states.sun.sun.attributes.elevation | int != 0)  %}true
+        {% elif ( (states.sun.sun.attributes.elevation | int < 35) and (states.sun.sun.attributes.elevation | int != 0) and (states.sensor.dark_sky_cloud_coverage.state | int > 50)) %}true
+        {% elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) %}true
+        {% else %}false
+        {% endif %}   
+#########################
+###      Devices      ###
+#########################
+
+
+########################
+###      People      ###
+########################
+
+        
+      
+#######################
+###      Modes      ###
+#######################
+
+    kitchen_mode:
+      friendly_name: Kitchen Mode
+      value_template: >-
+        {%- if is_state('input_boolean.sleep_mode', 'on') -%}
+        Sleeping
+        {%- elif states.sun.sun.attributes.elevation > 0 -%}
+        Normal
+        {%- elif states.sensor.temp__kitchen_30.state | int - states.climate.thermostat_36.attributes.current_temperature | int > 4   -%}
+        Cooking
+        {%- elif is_state('input_boolean.media_center', 'on') -%}
+        Media
+        {%- elif states.sun.sun.attributes.elevation < 0 -%}
+        Evening
+        {%- else-%}
+        Normal
+        {%- endif-%}
+    bathroom_mode:
+      friendly_name: Bathroom Mode
+      value_template: >-
+        {%- if is_state('input_boolean.sleep_mode', 'on') -%}
+        Sleeping
+        {%- elif states.sensor.humidity__bathroom_79.state | int  > 50  -%}
+        Shower
+        {%- elif states.sun.sun.attributes.elevation < 0 -%}
+        Evening
+        {%- else-%}
+        Normal
+        {%- endif-%} 
+    living_room_mode:
+      friendly_name: Living Room Mode
+      value_template: >-      
+        {%- if is_state('input_boolean.sleep_mode', 'on') -%}
+        Sleeping
+        {%- elif is_state('input_boolean.media_center', 'on') -%}
+        Media
+        {%- elif states.sun.sun.attributes.elevation < 0 -%}
+        Evening
+        {%- else-%}
+        Normal
+        {%- endif-%}
+          
+#### Weather ###################################################################
+  
+- platform: darksky
+  api_key: !secret darksky_api_key
+  monitored_conditions:
+    - summary
+    # - icon
+    - nearest_storm_distance
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+    # - wind_speed
+    # - wind_bearing
+    - cloud_cover
+    - humidity
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+    - temperature_max
+    - temperature_min
+    # - precip_intensity_max 
+
+ 
+      
+        

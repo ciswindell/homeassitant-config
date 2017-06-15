@@ -1,0 +1,12 @@
+###  Set the state of the house at sunset
+
+alias: Sunset
+trigger:
+- platform: sun
+  event: sunset
+  offset: '00:30:00'
+action:
+- service: light.turn_on
+  entity_id: light.front_porch_light_24
+- service: cover.close_cover
+  entity_id: cover.upper_shade_97,cover.bedroom_shade_94,cover.entry_shade_93,cover.living_room_shades_95

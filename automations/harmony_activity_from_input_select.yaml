@@ -1,0 +1,9 @@
+#### Start Harmony Activity from Input Select
+
+alias: 'Start Harmony Activity from Input Select'
+trigger:
+  platform: state
+  entity_id: input_select.living_room_harmony
+action:
+  service: script.turn_on
+  entity_id: script.input_select_harmony

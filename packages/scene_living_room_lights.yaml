@@ -1,0 +1,117 @@
+### Package that controls Living Room Lights
+
+### Input Select #########################################
+input_select:
+  living_room_scenes:
+    name: Living Room Scenes
+    options:
+    - 'Select'
+    - 'Full'
+    - 'High'
+    - 'Normal'
+    - 'Low'
+    - 'Off'
+    initial: 'Select'
+    icon: mdi:brightness-6
+
+#### Run Scene from Input Select
+
+automation:
+  alias: 'Run Living Light Scene from Input Select'
+  trigger:
+    platform: state
+    entity_id: input_select.living_room_scenes
+  action:
+  - service: scene.turn_on
+    data_template:
+      entity_id: >-
+        {%- if is_state('input_select.living_room_scenes', 'Full') -%}
+            scene.livingroom_full
+        {%- elif is_state('input_select.living_room_scenes', 'High') -%}
+            scene.livingroom_high
+        {%- elif is_state('input_select.living_room_scenes', 'Normal') -%}
+            scene.livingroom_normal
+        {%- elif is_state('input_select.living_room_scenes', 'Low') -%}
+            scene.livingroom_low
+        {%- elif is_state('input_select.living_room_scenes', 'Off') -%}
+            scene.livingroom_off
+        {%- else %}
+        {%- endif %}
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.living_room_scenes
+      option: 'Select'        
+    
+### Update Input Select with Light States
+# - alias: 'Living Light Scene Select Update'
+  # trigger:
+    # platform: state
+    # entity_id: light.dining_light_26
+    # state: off
+    # - platform: numeric_state
+      # entity_id: light.dining_light_26
+      # value_template: '{{ states.light.dining_light_26.attributes.brightness }}'
+      # below: '256'
+      # above: '0'
+  # action:
+    # service: input_select.select_option
+    # data_template:
+      # entity_id: input_select.living_room_scenes
+      # option: >-
+        # {%- if is_state('light.dining_light_26', 'off') -%}
+            # Off
+        # {%- elif states.light.dining_light_26.attributes.brightness == 255 -%}
+            # Full
+        # {%- elif (states.light.dining_light_26.attributes.brightness < 255) and (states.light.dining_light_26.attributes.brightness >= 204) -%}
+            # High
+        # {%- elif (states.light.dining_light_26.attributes.brightness < 204) and (states.light.dining_light_26.attributes.brightness >= 156) -%}
+            # Normal
+        # {%- elif (states.light.dining_light_26.attributes.brightness < 156) and (states.light.dining_light_26.attributes.brightness >= 105) -%}
+            # Low
+        # {%- else %}
+            # Off
+        # {%- endif %}
+    
+### Living Room Light Scenes################################
+scene:
+  - name: Livingroom Full
+    entities:
+      light.fireplace_light_85:
+        state: on
+        brightness: 255
+      light.dining_light_26:
+        state: on
+        brightness: 255 
+  - name: Livingroom High
+    entities:
+      light.fireplace_light_85:
+        state: on
+        brightness: 205
+      light.dining_light_26:
+        state: on
+        brightness: 205 
+  - name: Livingroom Normal
+    entities:
+      light.fireplace_light_85:
+        state: on
+        brightness: 155
+      light.dining_light_26:
+        state: on
+        brightness: 155       
+  - name: Livingroom Low
+    entities:
+      light.fireplace_light_85:
+        state: on
+        brightness: 105
+      light.dining_light_26:
+        state: on
+        brightness: 105
+  - name: Livingroom Off
+    entities:
+      light.fireplace_light_85:
+        state: off
+      light.dining_light_26:
+        state: off
+        
+        
+        

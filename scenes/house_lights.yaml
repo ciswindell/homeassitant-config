@@ -1,0 +1,55 @@
+###   House Light Scenes
+###   Stairway, Dining, and Fireplace Lights light.stairway_light_25
+
+- name: House Lights Full
+  entities:
+    light.stairway_light_25:
+      state: on
+      brightness: 255
+    light.fireplace_light_85:
+      state: on
+      brightness: 255
+    light.dining_light_26:
+      state: on
+      brightness: 255 
+- name: House Lights High
+  entities:
+    light.stairway_light_25:
+      state: on
+      brightness: 205
+    light.fireplace_light_85:
+      state: on
+      brightness: 205
+    light.dining_light_26:
+      state: on
+      brightness: 205 
+- name: House Lights Normal
+  entities:
+    light.stairway_light_25:
+      state: on
+      brightness: 155
+    light.fireplace_light_85:
+      state: on
+      brightness: 155
+    light.dining_light_26:
+      state: on
+      brightness: 155 
+- name: House Lights Low
+  entities:
+    light.stairway_light_25:
+      state: on
+      brightness: 105
+    light.fireplace_light_85:
+      state: on
+      brightness: 105
+    light.dining_light_26:
+      state: on
+      brightness: 105 
+- name: House Lights Off
+  entities:
+    light.stairway_light_25:
+      state: off
+    light.fireplace_light_85:
+      state: off
+    light.dining_light_26:
+      state: off

@@ -1,0 +1,16 @@
+###   A script that turns on kitchen lights
+
+    
+sequence:
+- service: scene.turn_on
+  data_template:
+    entity_id: >
+      {%- if is_state('input_boolean.sleep_mode', 'on') -%}
+      scene.kitchen_lights_low
+      {%- elif states.sun.sun.attributes.elevation > 0 -%}
+      scene.kitchen_lights_normal
+      {%- elif states.sun.sun.attributes.elevation < 0 -%}
+      scene.kitchen_lights_dim
+      {%- else-%}
+      scene.kitchen_lights_normal
+      {%- endif-%}

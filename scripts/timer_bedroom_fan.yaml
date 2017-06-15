@@ -1,0 +1,8 @@
+###   Cool down timer after fan is turned off
+
+sequence:
+- delay:
+    minutes: 120
+- service: automation.turn_on
+  data:
+    entity_id: automation.bedroom_fans_on_temp_high

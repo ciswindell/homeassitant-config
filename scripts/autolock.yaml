@@ -1,0 +1,8 @@
+###  A script that waits for a period of time and
+###  then locks the door
+
+sequence:
+- delay:
+    minutes: 3
+- service: lock.lock
+  entity_id: group.all_locks

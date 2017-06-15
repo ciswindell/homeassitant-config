@@ -1,0 +1,295 @@
+#### Views ###################################
+
+default_view:
+  icon: mdi:home
+  view: yes
+  entities:
+  - group.household_occupancy
+  - group.living_room
+  - group.kitchen
+  - group.office
+  - group.bedroom
+  - group.entryway
+  - group.bathroom
+    
+  
+Lights_view:
+  name: Lights
+  view: yes
+  entities: 
+  - group.interior_lights
+  - group.exterior_lights
+  - group.cabinet_led_kitchen
+  - group.Aux_Switches
+
+Environment_view:
+  name: Environment
+  view: yes
+  entities:
+  - group.current_weather
+  - group.future_weather
+  - group.environment_indoor
+  - camera.denver_radar
+  - camera.city_park
+  - camera.sloans_lake
+  - camera.wheatridge
+
+devices_view:
+  name: Devices
+  view: yes
+  entities:
+  - group.battery_levels
+  - group.harmony
+  - media_player.chromecast_living_room
+  
+config_view:
+  name: Config
+  icon: mdi:settings
+  view: yes
+  entities:
+  - group.config_scripts
+  - group.config_automations  
+
+
+#### Remotes ###########################################
+
+Harmony:
+  - sensor.harmony_activity
+  - input_select.living_room_harmony  
+
+
+# #### Sensors #########################################
+environment_indoor:
+  name: Indoor Sensors
+  entities:
+  - sensor.humidity__bathroom_79
+  - sensor.humidity__bedroom_102
+  - sensor.humidity_kitchen_32
+  - sensor.living_room_temp
+  - sensor.temp__bathroom_77
+  - sensor.temp__bedroom_100
+  - sensor.temp__kitchen_30
+  - sensor.lux__bathroom_78
+  - sensor.lux__bedroom_101
+  - sensor.lux__kitchen_31
+  - group.motion
+  
+Motion:
+  - binary_sensor.motion__bathroom_76
+  - binary_sensor.motion__bedroom_99
+  - binary_sensor.motion__kitchen_27
+  
+current_weather:
+  name: Current Weather
+  entities:
+  - sensor.dark_sky_temperature
+  # - sensor.dark_sky_daily_high_temperature
+  # - sensor.dark_sky_daily_low_temperature
+  - sensor.dark_sky_summary
+  # - sensor.dark_sky_minutely_summary
+  # - sensor.dark_sky_hourly_summary  
+  # - sensor.dark_sky_daily_summary
+  - sensor.dark_sky_cloud_coverage
+  - sensor.dark_sky_humidity
+  - sensor.dark_sky_nearest_storm_distance
+  - sun.sun
+  # - sensor.dark_sky_precip_probability
+  - sensor.dark_sky_precip
+  - sensor.dark_sky_precip_intensity
+  # - sensor.dark_sky_wind_speed
+  # - sensor.dark_sky_wind_bearing
+  # - sensor.dark_sky_daily_max_precip_intensity
+  - sensor.darkness
+  
+future_weather:
+  name: Forecast
+  entities:
+  # - sensor.dark_sky_temperature
+  - sensor.dark_sky_daily_high_temperature
+  - sensor.dark_sky_daily_low_temperature
+  # - sensor.dark_sky_summary
+  - sensor.dark_sky_minutely_summary
+  - sensor.dark_sky_hourly_summary  
+  - sensor.dark_sky_daily_summary
+  # - sensor.dark_sky_cloud_coverage
+  # - sensor.dark_sky_humidity
+  # - sensor.dark_sky_nearest_storm_distance
+  - sensor.dark_sky_precip_probability
+  # - sensor.dark_sky_precip
+  # - sensor.dark_sky_precip_intensity
+  # - sensor.dark_sky_wind_speed
+  # - sensor.dark_sky_wind_bearing
+  # - sensor.dark_sky_daily_max_precip_intensity
+  
+Battery_levels:
+  name: Battery Levels
+  entities:
+  - sensor.front_door_lock_88_battery
+  - sensor.thermostat_36_battery
+  - sensor.motion__bedroom_99_battery
+  - sensor.motion__bathroom_76_battery
+  - sensor.motion__kitchen_27_battery
+
+  
+#### Lights #########################################
+
+Interior_Lights:
+  name: Interior Lights
+  icon: mdi:lightbulb
+  entities:
+  - light.dining_light_26
+  - light.fireplace_light_85
+  - light.kitchen_light_28
+  - light.main_parent__cabinet_lights_67
+  - light.bathroom_light_4
+  - light.stairway_light_25
+  - light.desk_lights_14  
+  - light.bedroom_light_10
+  - light.closet_light_3
+
+Aux_Switches:
+  name: Aux Switches
+  icon: mdi:power-plug
+  entities:
+  - switch.aux_plug_1__ac_105
+  - switch.aux_plug_2__media_center_108  
+  
+Exterior_Lights:
+  name: Exterior Lights
+  icon: mdi:lightbulb
+  entities:
+  - light.front_porch_light_24
+
+Cabinet_LED_Kitchen:
+  name: Kitchen Cabinet Colors
+  icon: mdi:lightbulb
+  entities:
+  - light.blue__cabinet_light_71
+  - light.green__cabinet_light_70
+  - light.red__cabinet_light_69
+  - light.white__cabinet_light_72
+  
+Living_Lights:
+  name: Living Room Lights
+  icon: mdi:lightbulb
+  entities:
+  - light.dining_light_26
+  - light.fireplace_light_85
+
+Office_lights:
+  name: Office Lights
+  icon: mdi:lightbulb
+  entities:
+  - light.desk_lights_14
+  - light.stairway_light_25
+  
+Kitchen_lights:
+  name: Kitchen Lights
+  icon: mdi:lightbulb
+  entities:
+  - light.kitchen_light_28
+  - light.main_parent__cabinet_lights_67
+
+
+# #### Occupancy ##################################
+
+Chris_Occupancy:
+  name: Chris
+  entities:
+  - device_tracker.phoebe
+  
+Charlotte_Occupancy:
+  name: Charlotte
+  entities:
+  - device_tracker.iphone
+  
+Household_Occupancy:
+  name: Family
+  entities:
+  - group.chris_occupancy
+  - group.charlotte_occupancy
+    
+#### Devices ################################
+
+
+  
+#### Rooms ####################################
+
+Living_Room:
+  name: Living Room
+  entities:
+  - group.living_lights
+  - input_select.living_room_harmony
+  - input_select.living_room_scenes
+  - climate.thermostat_36
+  - switch.living_room_fan_33
+  # - sensor.living_room_mode
+  - cover.living_room_shades_95
+  - cover.upper_shade_97
+  - cover.patio_door_shade_92
+  
+
+Kitchen:
+  name: Kitchen
+  entities:
+  - group.kitchen_lights
+  - sensor.kitchen_mode
+  - input_select.kitchen_scenes
+  - sensor.temp__kitchen_30
+  - sensor.humidity_kitchen_32  
+  
+Office:
+  name: Office
+  entities:
+  - group.office_lights
+  - light.closet_light_3
+  - cover.entry_shade_93
+  - cover.bedroom_shade_94
+  
+Bedroom:
+  name: Bedroom
+  entities:
+  - light.bedroom_light_10
+  - switch.bedroom_fan_11
+  - input_boolean.sleep_mode
+  - cover.entry_shade_93
+  - cover.bedroom_shade_94
+  - sensor.humidity__bedroom_102
+  - sensor.temp__bedroom_100
+
+Entryway:
+  name: Entryway
+  entities:
+  - lock.front_door_lock_88
+  - input_boolean.autolock
+  - light.front_porch_light_24
+  
+Bathroom:
+  name: Bathroom
+  entities:
+  - light.bathroom_light_4
+  - switch.bathroom_fan_9
+  - sensor.bathroom_mode
+  - sensor.humidity__bathroom_79
+  - sensor.temp__bathroom_77
+
+# #### Modes ######################################
+
+Room_Modes:
+  name: Room Modes
+  entities:
+  - sensor.bathroom_mode
+  - sensor.kitchen_mode
+  - sensor.living_room_mode
+  - input_boolean.guest_mode
+  
+# #### Config ########################################
+ 
+config_scripts:
+  name: Scripts
+  entities: script.timer_closet_short_set,script.timer_bedroom_set,script.dimmer_living_low,script.timer_living_fan,script.motion_bathroom_light,script.dimmer_entry_bright,script.timer_bedroom_fan,script.dimmer_sunset,script.dimmer_entry_low,script.dimmer_living_normal,script.timer_bathroom_set,script.enable_autolock,script.dimmer_living_bright,script.motion_kitchen_light,script.timer_kitchen_set,script.timer_closet_long_set,script.input_select_harmony,script.dimmer_entry_normal,script.autolock
+
+config_automations:
+  name: Automations
+  entities: automation.bathroom_humidity_high,automation.bedroom_fans_on_temp_high,automation.motion_in_bedroom,automation.remote_external_update_living_room,automation.no_motion_in_bedroom,automation.autolock_disabled,automation.manual_fan_select,automation.motion_in_bathroom,automation.motion_in_kitchen,automation.bedroom_shade_morning,automation.arrival_lights,automation.unlock_door_on_arrival,automation.dimmer_930pm,automation.no_motion_in_kitchen,automation.living_fans_on_temp_high,automation.sunrise,automation.automation_30,automation.sleep_mode_off,automation.bathroom_humidity_low,automation.living_light_scene_select_update,automation.closet_light_extend_timer,automation.start_harmony_activity_from_input_select,automation.sleep_mode_on,automation.run_living_light_scene_from_input_select,automation.autolock_enabled,automation.darkness_lights_on,automation.dimmer_8pm,automation.unoccupied,automation.run_kitchen_scene_from_input_select,automation.closet_light_timer_set,automation.living_fans_off_temp_low,automation.kitchen_scene_select_update,automation.sunset,automation.manual_fan_select_bedroom,automation.no_motion_in_bathroom
+

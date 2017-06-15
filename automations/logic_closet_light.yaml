@@ -1,0 +1,21 @@
+###   When closet light is turned on, set a script
+###   to turn off after a short time
+
+alias: Closet Light Timer Set
+trigger:
+  platform: state
+  entity_id: light.closet_light_3
+  from: 'off'
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: script.timer_closet_short_set
+      state: 'off'
+    - condition: state
+      entity_id: script.timer_closet_long_set
+      state: 'off'  
+action:
+- service: script.turn_on
+  entity_id: script.timer_closet_short_set
+  

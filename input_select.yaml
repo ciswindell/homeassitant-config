@@ -1,0 +1,11 @@
+###   Input Select Switches   ###
+
+
+living_room_harmony:
+  name: Living Room TV
+  options:
+  - PowerOff
+  - Watch TV
+  initial: PowerOff
+  icon: mdi:monitor
+  

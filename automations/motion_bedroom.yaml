@@ -1,0 +1,12 @@
+###   When motion is detected in the Bedroom,
+###   cancel the script to turn off the light
+
+alias: Motion in Bedroom
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion__bedroom_99
+  state: 'on'
+action:
+  - service: script.turn_off
+    data:
+      entity_id: script.timer_bedroom_set

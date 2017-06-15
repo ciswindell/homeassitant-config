@@ -1,0 +1,15 @@
+###   Set a timer when the fan is turned off
+
+alias: Manual Fan Select Bedroom
+trigger:
+- platform: state
+  entity_id: switch.bedroom_fan_11
+action:
+  - service: script.turn_off
+    data:
+      entity_id: script.timer_bedroom_fan
+  - service: automation.turn_off
+    entity_id: automation.bedroom_fans_on_temp_high
+  - service: script.turn_on
+    data:
+      entity_id: script.timer_bedroom_fan

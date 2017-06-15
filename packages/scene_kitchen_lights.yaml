@@ -1,0 +1,127 @@
+### Package that controls Kitchen Lights
+
+### Input Select #########################################
+input_select:
+  kitchen_scenes:
+    name: Kitchen Scenes
+    options:
+    - 'Select' 
+    - 'Off'
+    - 'Normal'
+    - 'Dim'
+    - 'Low'
+    initial: 'Off'
+    icon: mdi:brightness-6
+
+#### Run Scene from Input Select
+
+automation:
+- alias: 'Run Kitchen Scene from Input Select'
+  trigger:
+    platform: state
+    entity_id: input_select.kitchen_scenes
+  action:
+  - service: scene.turn_on
+    data_template:
+      entity_id: >-
+        {%- if is_state('input_select.kitchen_scenes', 'Dim') -%}
+            scene.kitchen_lights_dim
+        {%- elif is_state('input_select.kitchen_scenes', 'Normal') -%}
+            scene.kitchen_lights_normal
+        {%- elif is_state('input_select.kitchen_scenes', 'Low') -%}
+            scene.kitchen_lights_low
+        {%- elif is_state('input_select.kitchen_scenes', 'Off') -%}
+            scene.kitchen_lights_off
+        {%- else %}
+        {%- endif %}   
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.kitchen_scenes
+      option: 'Select'
+# Update Input Select with Light States
+# - alias: 'Kitchen Scene Select Update'
+  # trigger:
+    # platform: state
+    # entity_id: light.kitchen_light_28
+
+  # action:
+    # service: input_select.select_option
+    # data_template:
+      # entity_id: input_select.kitchen_scenes
+      # option: >-
+        # {%- if is_state('light.kitchen_light_28', 'off') and (is_state('light.red__cabinet_light_69', 'off')) -%}
+            # Off
+        # {%- elif (is_state('light.kitchen_light_28', 'off')) and (is_state('light.red__cabinet_light_69', 'on')) -%}
+            # Low    
+        # {%- elif states.light.kitchen_light_28.attributes.brightness == 255 -%}
+            # Normal
+        # {%- elif (states.light.kitchen_light_28.attributes.brightness < 255) and (states.light.kitchen_light_28.attributes.brightness >= 1) -%}
+            # Dim
+        # {%- else %}
+            # Off
+        # {%- endif %}
+    
+### Kitchen Light Scenes ################################
+
+scene:
+### Normal
+- name: Kitchen Lights Normal
+  entities:
+    light.kitchen_light_28:
+      state: on
+      brightness: 255
+    light.white__cabinet_light_72:
+      state: on
+      brightness: 255
+    light.blue__cabinet_light_71:
+      state: off
+    light.green__cabinet_light_70:
+      state: off
+    light.red__cabinet_light_69:
+      state: off
+
+### DIM
+- name: Kitchen Lights Dim
+  entities:
+    light.kitchen_light_28:
+      state: on
+      brightness: 135
+    light.white__cabinet_light_72:
+      state: on
+      brightness: 135
+    light.blue__cabinet_light_71:
+      state: off
+    light.green__cabinet_light_70:
+      state: off
+    light.red__cabinet_light_69:
+      state: off
+
+#### Cabinet Lights Only     
+- name: Kitchen Lights Low
+  entities:
+    light.kitchen_light_28:
+      state: off
+    light.white__cabinet_light_72:
+      state: off
+    light.blue__cabinet_light_71:
+      state: off
+    light.green__cabinet_light_70:
+      state: off
+    light.red__cabinet_light_69:
+      state: on
+      brightness: 155       
+
+### All Lights Off    
+- name: Kitchen Lights Off
+  entities:
+    light.kitchen_light_28:
+      state: off
+    light.white__cabinet_light_72:
+      state: off
+    light.blue__cabinet_light_71:
+      state: off
+    light.green__cabinet_light_70:
+      state: off
+    light.red__cabinet_light_69:
+      state: off
+        

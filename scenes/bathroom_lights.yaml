@@ -1,0 +1,26 @@
+###   Bathroom Light Scenes
+
+#############  Normal  ################
+
+- name: Bathroom Lights Normal
+  entities:
+    light.bathroom_light_4:
+      state: on
+      brightness: 255
+
+
+#############  DIM  ################
+
+- name: Bathroom Lights Dim
+  entities:
+    light.bathroom_light_4:
+      state: on
+      brightness: 150
+
+#############  Low  ################ 
+    
+- name: Bathroom Lights Low
+  entities:
+    light.bathroom_light_4:
+      state: on
+      brightness: 75

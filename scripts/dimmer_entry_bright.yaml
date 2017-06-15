@@ -1,0 +1,392 @@
+#### A script that changes the Entry Lights
+#### to Bright in 5 second intervals
+
+sequence:
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}
+- delay:
+    seconds: 5
+- service: light.turn_on
+  data_template:
+    entity_id: light.stairway_light_25
+    brightness: >-
+      {%- if states.light.stairway_light_25.state == 'off' -%}
+          5
+      {%- elif states.light.stairway_light_25.attributes.brightness > 265 -%}
+          {{ states.light.stairway_light_25.attributes.brightness - 10 }}
+      {%- elif states.light.stairway_light_25.attributes.brightness < 245 -%}
+          {{ states.light.stairway_light_25.attributes.brightness + 10 }}
+      {%- else %}
+          255
+      {%- endif %}

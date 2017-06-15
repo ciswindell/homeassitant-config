@@ -1,0 +1,30 @@
+#### Dim Living Lights at 930PM
+
+alias: Dimmer 930PM
+trigger:
+- platform: time
+  after: '21:30:00'
+condition:
+- condition: state
+  entity_id: group.household_occupancy
+  state: 'home'
+- condition: state
+  entity_id: input_boolean.sleep_mode
+  state: 'off'
+- condition: or
+  conditions:
+  - condition: state
+    entity_id: light.fireplace_light_85
+    state: 'on'
+  - condition: state
+    entity_id: light.dining_light_26
+    state: 'on'
+  - condition: state
+    entity_id: light.stairway_light_25
+    state: 'on'
+action:
+- service: script.dimmer_living_low
+- condition: state
+  entity_id: light.stairway_light_25
+  state: 'on'
+- service: script.dimmer_entry_low
