@@ -64,7 +64,7 @@ automation:
 ### Kitchen Light Scenes ################################
 
 scene:
-### Normal
+# Normal
 - name: Kitchen Lights Normal
   entities:
     light.kitchen_light_28:
@@ -80,7 +80,7 @@ scene:
     light.red__cabinet_light_69:
       state: off
 
-### DIM
+# DIM
 - name: Kitchen Lights Dim
   entities:
     light.kitchen_light_28:
@@ -96,7 +96,7 @@ scene:
     light.red__cabinet_light_69:
       state: off
 
-#### Cabinet Lights Only     
+# Cabinet Lights Only     
 - name: Kitchen Lights Low
   entities:
     light.kitchen_light_28:
@@ -111,7 +111,7 @@ scene:
       state: on
       brightness: 155       
 
-### All Lights Off    
+# All Lights Off    
 - name: Kitchen Lights Off
   entities:
     light.kitchen_light_28:

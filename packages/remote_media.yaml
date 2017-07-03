@@ -1,0 +1,40 @@
+
+
+
+### Automations #######################################
+automation:
+# Turn media center off at when house is empty
+- alias: Unoccupied Media Center
+  trigger:
+  - platform: state
+    entity_id: group.household_occupancy
+    from: 'home'
+  action:
+  - service: remote.turn_off
+    entity_id: remote.living_room
+       
+# Start Harmony Activity from Input Select
+- alias: 'Start Harmony Activity from Input Select'
+  trigger:
+    platform: state
+    entity_id: input_select.living_room_harmony
+  action:
+    service: script.turn_on
+    entity_id: script.input_select_harmony
+
+# Update Input Select with Harmony Activity
+- alias: 'Remote external update living room'
+  trigger:
+    platform: state
+    entity_id: remote.living_room
+  action:
+    service: input_select.select_option
+    data_template:
+      entity_id: input_select.living_room_harmony
+      option: >-
+        {%- if states.remote.living_room.attributes.current_activity == 'Watch TV' -%}
+            Watch TV
+        {%- elif states.remote.living_room.attributes.current_activity == 'PowerOff' -%}
+            PowerOff
+        {%- else %}
+        {%- endif %}    

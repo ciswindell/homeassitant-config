@@ -1,0 +1,54 @@
+
+
+
+
+### Automations ##################################################
+automation:
+
+# Variable Set Front Door Lock Battery
+- alias: Battery Front Door Lock
+  trigger:
+  - platform: state
+    entity_id: sensor.front_door_lock_88_battery
+  # - platform: time
+    # minutes: '/360'
+    # seconds: 00
+  action:
+    service: joaoapps_join.phoebe_join_send_tasker
+    data_template:
+      command: >
+        {% set Data = states.sensor.front_door_lock_88_battery.state.split('.')%}
+        {% set output = 'setvar=:=Batt_front_door_lock=:='+Data[0] %}
+        {{output}}
+        
+# Variable Set Thermostat Battery
+- alias: Battery Thermostat
+  trigger:
+  - platform: state
+    entity_id: sensor.thermostat_36_battery
+  # - platform: time
+    # minutes: '/360'
+    # seconds: 00
+  action:
+    service: joaoapps_join.phoebe_join_send_tasker
+    data_template:
+      command: >
+        {% set Data = states.sensor.thermostat_36_battery.state.split('.')%}
+        {% set output = 'setvar=:=Batt_thermostat=:='+Data[0] %}
+        {{output}}
+        
+# Variable Set Bedroom Motion Battery
+- alias: Battery Bedroom Motion
+  trigger:
+  - platform: state
+    entity_id: sensor.motion__bedroom_99_battery
+  # - platform: time
+    # minutes: '/360'
+    # seconds: 00
+  action:
+    service: joaoapps_join.phoebe_join_send_tasker
+    data_template:
+      command: >
+        {% set Data = states.sensor.motion__bedroom_99_battery.state.split('.')%}
+        {% set output = 'setvar=:=Batt_bedroom_motion=:='+Data[0] %}
+        {{output}}

@@ -1,0 +1,93 @@
+
+
+
+
+### Automations #######################################
+automation:
+
+### Living Room Fan ###
+# Turn Living Fans Off when temperature is Low
+- alias: Living Fans off Temp Low
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.living_room_temp
+    below: 73
+  action:
+    - service: switch.turn_off
+      entity_id: switch.living_room_fan_33
+      
+# Turn Living Fans on when temperature is high
+- alias: Living Fans On Temp High
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.living_room_temp
+    above: 73
+  - platform: time
+      # Matches every hour at 5 minutes past whole
+    minutes: 20
+    seconds: 00
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.living_room_temp
+    above: 73
+  action:
+    - service: switch.turn_on
+      entity_id: switch.living_room_fan_33      
+      
+# Set a timer when the fan is turned off
+- alias: Manual Fan Select
+  trigger:
+  - platform: state
+    entity_id: switch.living_room_fan_33
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.timer_living_fan
+    - service: automation.turn_off
+      entity_id: automation.living_fans_on_temp_high
+    - service: script.turn_on
+      data:
+        entity_id: script.timer_living_fan      
+      
+### Bedroom Fans ###      
+# Turn Living Fans on when temperature is high
+- alias: Bedroom Fans On Temp High
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.temp__bedroom_100
+    above: 70
+  - platform: time
+      # Matches every hour at 5 minutes past whole
+    minutes: 20
+    seconds: 00
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.temp__bedroom_100
+    above: 70
+  action:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_fan_11
+
+# Set a timer when the fan is turned off
+- alias: Manual Fan Select Bedroom
+  trigger:
+  - platform: state
+    entity_id: switch.bedroom_fan_11
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.timer_bedroom_fan
+    - service: automation.turn_off
+      entity_id: automation.bedroom_fans_on_temp_high
+    - service: script.turn_on
+      data:
+        entity_id: script.timer_bedroom_fan      
+      
+      
+      
+      
+      
+      
+      
+      
+      

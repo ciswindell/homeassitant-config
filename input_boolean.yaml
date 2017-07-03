@@ -1,17 +1,12 @@
 ###   Input Boolean
 
-sleep_mode:
-  name: Sleep Mode
-  initial: off
-  icon: mdi:sleep
-
 guest_mode:
   name: Guest Mode
   initial: off
   icon: mdi:human-male-female
 
-autolock:
-  name: Auto Relock
-  initial: on
-  icon: mdi:restore
+# autolock:
+  # name: Auto Relock
+  # initial: on
+  # icon: mdi:restore
   

@@ -1,0 +1,40 @@
+
+
+
+
+### Automations ########################################
+automation:
+# Close shades at sunset
+- alias: Shades Sunset
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '00:30:00'
+  action:
+  - service: cover.close_cover
+    entity_id: cover.upper_shade_97,cover.bedroom_shade_94,cover.entry_shade_93,cover.living_room_shades_95
+    
+    
+# Open shades at sunset
+- alias: Shades Sunrise
+  trigger:
+  - platform: sun
+    event: sunrise
+  action:
+  - service: cover.open_cover
+    entity_id: cover.entry_shade_93
+  - service: cover.open_cover
+    entity_id: cover.living_room_shades_95
+  - service: cover.open_cover
+    entity_id: cover.patio_door_shade_92
+  - service: cover.open_cover
+    entity_id: cover.upper_shade_97
+    
+# Open bedroom shade at set time
+- alias: Bedroom Shade Morning
+  trigger:
+  - platform: time
+    after: '10:20:00'
+  action:
+  - service: cover.open_cover
+    entity_id: cover.bedroom_shade_94    

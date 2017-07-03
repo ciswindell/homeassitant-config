@@ -102,7 +102,7 @@ device_tracker:
 battery_state:
    
 #### Includes  ##############################################
-automation: !include_dir_list automations
+# automation: !include_dir_list automations
       
 scene: !include_dir_merge_list scenes
   
@@ -119,4 +119,5 @@ input_boolean: !include input_boolean.yaml
 switch: !include switch.yaml
 
 
-    
+shell_command:
+  gitupdate: bash /home/homeassistant/.homeassistant/gitupdate.sh   

@@ -1,9 +1,0 @@
-###  Open Bedroom shades at a certain time
-
-alias: Bedroom Shade Morning
-trigger:
-- platform: time
-  after: '10:20:00'
-action:
-- service: cover.open_cover
-  entity_id: cover.bedroom_shade_94

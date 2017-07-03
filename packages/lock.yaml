@@ -1,0 +1,79 @@
+### Setup for front door lock automations
+
+
+### Input Boolean for UI Switch ############################
+
+input_boolean:
+  autolock:
+    name: Auto Relock
+    initial: on
+    icon: mdi:restore
+
+
+### Automations ########################################
+automation:
+
+### Autolock Program ###
+# When Lock is unlocked run the Autolock script
+- alias: Autolock Enabled
+  trigger:
+    platform: state
+    entity_id: lock.front_door_lock_88
+    state: 'unlocked'
+  condition:
+  - condition: state
+    entity_id: input_boolean.autolock
+    state: 'on'
+  action:
+    - service: script.autolock
+    
+# When Autolock is disabled, wait 30 minutes
+# and then run enable Autolock script
+- alias: Autolock Disabled
+  trigger:
+    platform: state
+    entity_id: input_boolean.autolock
+    state: 'off'
+  action:
+    - service: script.enable_autolock
+    - service: script.turn_off
+      entity_id: script.autolock
+    - service: lock.unlock
+      entity_id: lock.front_door_lock_88
+
+### Occupancy Based ###      
+# Unlock Door when someone arrives
+- alias:  Unlock Door on Arrival
+  trigger:
+  - platform: state
+    entity_id: group.charlotte_occupancy
+    to: 'home'
+  - platform: state
+    entity_id: group.chris_occupancy
+    to: 'home'
+  action:
+  - service: lock.unlock
+    entity_id: lock.front_door_lock_88
+  
+### Scripts ######################################
+
+script:
+# Lock all doors 3 minutes after unlock
+  autolock:
+    sequence:
+    - delay:
+        minutes: 3
+    - service: lock.lock
+      entity_id: group.all_locks
+      
+# Restore Autolock automation
+  enable_autolock:
+    sequence:
+    - delay:
+        minutes: 30
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.autolock
+    - service: script.autolock      
+      
+      

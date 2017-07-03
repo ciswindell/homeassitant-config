@@ -1,0 +1,229 @@
+
+
+
+
+### Automations ###################################
+automation:
+### Bathroom ###
+# Cancel timer and turn on lights if off via script
+- alias: Motion in Bathroom
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion__bathroom_76
+    state: 'on'
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.timer_bathroom_set
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: light.bathroom_light_4
+          state: 'off'
+        - condition: state
+          entity_id: light.bathroom_light_4
+          state: 'off'
+    - service: script.motion_bathroom_light
+# Set timer    
+- alias: No Motion in Bathroom
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion__bathroom_76
+    from: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.humidity__bathroom_79
+    below: 40
+  - condition: state
+    entity_id: binary_sensor.motion__bathroom_76
+    state: 'off'
+  action:
+  - service: script.timer_bathroom_set
+
+# Cancel Bathroom Timer when humidity is high
+- alias: Bathroom Humidity High
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.humidity__bathroom_79
+    above: 49
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.timer_bathroom_set
+    - service: switch.turn_on
+      entity_id: switch.bathroom_fan_9  
+  
+# Turn off bath fan and set light timer when humidity is low
+- alias: Bathroom Humidity Low
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.humidity__bathroom_79
+    below: 48
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: switch.bathroom_fan_9
+        state: 'on'
+      - condition: state
+        entity_id: light.bathroom_light_4
+        state: 'on'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.bathroom_fan_9
+  - service: script.turn_on
+    data:
+      entity_id: script.timer_bathroom_set  
+  
+### Kitchen ###  
+# Cancel timer
+- alias: Motion in Kitchen
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion__kitchen_27
+    state: 'on'
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.timer_kitchen_set
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: light.main_parent__cabinet_lights_67
+          state: 'off'
+        - condition: state
+          entity_id: light.kitchen_light_28
+          state: 'off'
+    - service: script.motion_kitchen_light
+
+# Set timer
+- alias: No Motion in Kitchen
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion__kitchen_27
+    from: 'on'
+  action:
+  - service: script.timer_kitchen_set 
+
+### Bedroom ###
+# Cancel Timer
+- alias: Motion in Bedroom
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion__bedroom_99
+    state: 'on'
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.timer_bedroom_set
+
+#Set Timer
+- alias: No Motion in Bedroom
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion__bedroom_99
+    from: 'on'
+  condition:
+  - condition: state
+    entity_id: light.bedroom_light_10
+    state: 'on'  
+  action:
+  - service: script.timer_bedroom_set 
+
+### Scripts ############################################## 
+script:
+### Bathroom ###
+# Turn on bathroom light scene based on states
+  motion_bathroom_light:
+    sequence:
+    - service: scene.turn_on
+      data_template:
+        entity_id: >
+          {%- if is_state("sensor.bathroom_mode", "Shower") -%}
+          scene.bathroom_lights_normal
+          {%- elif is_state("input_boolean.sleep_mode", "on") -%}
+          scene.bathroom_lights_low
+          {%- elif is_state("sensor.bathroom_mode", "Evening") -%}
+          scene.bathroom_lights_dim
+          {%- else -%}
+          scene.bathroom_lights_normal
+          {%- endif -%}  
+
+# Timer          
+  timer_bathroom_set:
+    sequence:
+    - delay:
+        minutes: 5
+    - service: light.turn_off
+      data:
+        entity_id: light.bathroom_light_4          
+
+### Kitchen ###
+# Turn on kitchen light scene based on states
+  motion_kitchen_light: 
+    sequence:
+    - service: scene.turn_on
+      data_template:
+        entity_id: >
+          {%- if is_state('input_boolean.sleep_mode', 'on') -%}
+          scene.kitchen_lights_low
+          {%- elif states.sun.sun.attributes.elevation > 0 -%}
+          scene.kitchen_lights_normal
+          {%- elif states.sun.sun.attributes.elevation < 0 -%}
+          scene.kitchen_lights_dim
+          {%- else-%}
+          scene.kitchen_lights_normal
+          {%- endif-%}  
+          
+# Timer          
+  timer_kitchen_set:
+    sequence:
+    - delay:
+        minutes: 3
+    - service: light.turn_off
+      data:
+        entity_id: light.kitchen_light_28
+    - service: light.turn_off
+      data:
+        entity_id: light.main_parent__cabinet_lights_67 
+
+### Bedroom ###
+# Timer
+  timer_bedroom_set:
+    sequence:
+    - delay:
+        minutes: 3
+    - service: light.turn_off
+      data:
+        entity_id: light.bedroom_light_10        
+
+### Scenes ##########################################
+scene: 
+### Bathroom ###
+#Normal
+- name: Bathroom Lights Normal
+  entities:
+    light.bathroom_light_4:
+      state: on
+      brightness: 255
+
+# Dim
+- name: Bathroom Lights Dim
+  entities:
+    light.bathroom_light_4:
+      state: on
+      brightness: 150
+
+# Low    
+- name: Bathroom Lights Low
+  entities:
+    light.bathroom_light_4:
+      state: on
+      brightness: 75 
+
+### Kitchen ###      
+# See Package - Scene Kitchen Lights
+
+### Bedroom ###
+# Scenes not created          
+          
